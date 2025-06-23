@@ -3,6 +3,7 @@ import variables_globales as vg
 from utilidades.limpieza import cerrarProcesos as Limpieza
 from modulos.bot_00_configuracion import bot_run as Bot_00_Configuracion
 from modulos.bot_01_super_admin import bot_run as Bot_01_SuperAdmin
+from modulos.bot_02_procesar_reporte import bot_run as Bot_02_ProcesarReporte
 from utilidades.notificaiones_whook import WebhookNotifier
 
 from datetime import datetime
@@ -62,15 +63,15 @@ def main():
 
         logger.info(f"Configuración cargada exitosamente. Secciones disponibles: {', '.join(cfg.keys())}")
 
-        notificaion = WebhookNotifier(cfg["webhooks"]["webhook_url"])
+       
 
         # Notificación de inicio
         #notificaion.send_notification("Inicio del proceso tipo de cambio PayPal")
 
         # Ejecución de los bots
         for bot_name, bot_function in [
-            ("Bot 01 - Obtener TC bloomberg", Bot_01_SuperAdmin),   
-            
+            ("Bot 01 - Obtener TC bloomberg", Bot_01_SuperAdmin),
+            ("Bot 02 - Procesar Reporte", Bot_02_ProcesarReporte),
         ]:
             logger.info(f"==================== INICIANDO {bot_name} ====================")
             resultado, mensaje = bot_function(cfg)            

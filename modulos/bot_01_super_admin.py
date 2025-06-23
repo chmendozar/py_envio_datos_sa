@@ -5,8 +5,6 @@ import os
 from pathlib import Path
 from utilidades.excepciones import BusinessException
 from datetime import datetime
-import variables_globales as vg
-from bs4 import BeautifulSoup
 
 logger = logging.getLogger("Bot 01 - Super Admin")
 
@@ -60,7 +58,6 @@ def descargar_recaudo(cfg, session):
         return input_path
     else:
         raise BusinessException(f"Error al descargar el recaudo: {response.status_code}")
-
 
 def bot_run(cfg, mensaje="Bot 01 - Super Admin"):
     resultado = False
