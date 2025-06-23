@@ -98,3 +98,14 @@ recaudo.xls
 *.db
 *.sqlite
 *.sqlite3
+
+# Directorios de cliente
+cliente/
+input/
+output/
+
+# Archivos de entrada y salida
+input/*
+output/*
+cliente/*
+
