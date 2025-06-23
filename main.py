@@ -73,27 +73,7 @@ def main():
             
         ]:
             logger.info(f"==================== INICIANDO {bot_name} ====================")
-            resultado, mensaje = bot_function(cfg)
-            
-            if resultado:
-                logger.info(f"{bot_name} completado exitosamente: {mensaje}")
-                if bot_name == "Bot 03 - Super Admin":
-                    notificaion.send_notification(
-                        "Se registró tipo de cambio ModuloTC\n"
-                        f"TC Bloomberg: {vg.tipo_cambio_bloomberg}\n"
-                        f"TC Compra: {vg.tipo_cambio_compra}\n"
-                        f"TC Venta: {vg.tipo_cambio_venta}"
-                    )             
-                if bot_name == "Bot 04 - Registrar TC paypal":
-                    notificaion.send_notification(
-                        "Se registró tipo de cambio ModuloTC\n"
-                        f"TC Bloomberg: {vg.tipo_cambio_bloomberg}\n"
-                        f"TC Compra: {vg.tipo_cambio_compra}\n"
-                        f"TC Venta: {vg.tipo_cambio_venta}"
-                    )
-            else:
-                logger.error(f"{bot_name} falló: {mensaje}")
-                return
+            resultado, mensaje = bot_function(cfg)            
         
         # Verificar si hay excepciones de negocio o sistema
         if vg.business_exception:
