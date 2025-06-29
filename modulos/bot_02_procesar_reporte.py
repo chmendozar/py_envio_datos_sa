@@ -168,12 +168,12 @@ def bot_run(cfg, mensaje="Bot 02 - Procesar Reporte"):
         df_procesado = procesar_df(df)
 
         logger.info(f"DataFrame procesado con éxito. Shape: {df_procesado.shape}")
-        output_path = Path(config['rutas']['ruta_output'])
+        output_path = Path(cfg['rutas']['ruta_output'])
         logger.debug(f"Ruta de output: {output_path}")
         fecha_str = datetime.now().strftime("%Y%m%d%H%M%S")
         nombre_archivo = f"Reporte_Recaudacion_{fecha_str}.xlsx"
         logger.info(f"Guardando DataFrame procesado en: {output_path / nombre_archivo}")
-        df_procesado.write_excel(output_path / nombre_archivo, include_index=False)
+        df_procesado.write_excel((output_path / nombre_archivo))
         mensaje = f"Reporte procesado y validado correctamente."
         resultado = True
         logger.info("Archivo procesado y guardado correctamente.")

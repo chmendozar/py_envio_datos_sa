@@ -30,9 +30,8 @@ def bot_run():
                     item.rmdir()
 
         # Se crea la carpeta de output si no existe
-        output_path = Path(cfg["rutas"]["ruta_output"])
-        if not output_path.exists():
-            output_path.mkdir(parents=True)
+        if not Path(cfg["rutas"]["ruta_output"]).exists():
+            Path(cfg["rutas"]["ruta_output"]).mkdir(parents=True)
 
         # Inicializar logger
         init_logger(nivel=logging.INFO)
