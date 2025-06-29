@@ -74,7 +74,8 @@ def main():
             ("Bot 02 - Procesar Reporte", Bot_02_ProcesarReporte),
         ]:
             logger.info(f"==================== INICIANDO {bot_name} ====================")
-            resultado, mensaje = bot_function(cfg)            
+            resultado, mensaje = bot_function(cfg)
+                
         
         # Verificar si hay excepciones de negocio o sistema
         if vg.business_exception:

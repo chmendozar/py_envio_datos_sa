@@ -13,12 +13,26 @@ def bot_run():
         cfg = cargar_configuracion()
 
         # Se crea la carpeta de input si no existe
-        if not Path(cfg["rutas"]["ruta_input"]).exists():
-            Path(cfg["rutas"]["ruta_input"]).mkdir(parents=True)
+        input_path = Path(cfg["rutas"]["ruta_input"])
+        if not input_path.exists():
+            input_path.mkdir(parents=True)
+        else:
+            # Limpiar todos los archivos y carpetas dentro de input
+            for item in input_path.iterdir():
+                if item.is_file():
+                    item.unlink()
+                elif item.is_dir():
+                    for subitem in item.rglob("*"):
+                        if subitem.is_file():
+                            subitem.unlink()
+                        elif subitem.is_dir():
+                            subitem.rmdir()
+                    item.rmdir()
 
         # Se crea la carpeta de output si no existe
-        if not Path(cfg["rutas"]["ruta_output"]).exists():
-            Path(cfg["rutas"]["ruta_output"]).mkdir(parents=True)
+        output_path = Path(cfg["rutas"]["ruta_output"])
+        if not output_path.exists():
+            output_path.mkdir(parents=True)
 
         # Inicializar logger
         init_logger(nivel=logging.INFO)
