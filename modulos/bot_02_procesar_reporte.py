@@ -170,6 +170,12 @@ def bot_run(cfg, mensaje="Bot 02 - Procesar Reporte"):
         nombre_archivo = f"Reporte_Recaudacion_{fecha_str}.xlsx"
         vg.archivo_recaudo = output_path / nombre_archivo
         logger.info(f"Guardando DataFrame procesado en: {output_path / nombre_archivo}")
+        df_procesado = df_procesado.rename({
+            "Tipo Documento": "TipoDocumento",
+            "Numero Documento": "NumeroDocumento", 
+            "Nombres": "NombreCompleto",
+            "Bin": "BIN"
+        })
         df_procesado.write_excel((output_path / nombre_archivo))
         mensaje = f"Reporte procesado y validado correctamente."
         resultado = True

@@ -1,6 +1,6 @@
 import logging
 import configparser
-import polars as pl
+import pandas as pd
 from pathlib import Path
 from datetime import datetime
 from utilidades.excepciones import BusinessException
@@ -21,7 +21,7 @@ def convertir_excel_a_txt(archivo_salida, moneda, ruta_excel):
 
     # Leer el archivo Excel
     try:
-        df = pl.read_excel(ruta_excel)
+        df = pd.read_excel(ruta_excel)
         print(f"Archivo Excel leído exitosamente. Registros encontrados: {len(df)}")
     except Exception as e:
         print(f"Error al leer el archivo Excel: {e}")
@@ -64,7 +64,7 @@ def convertir_excel_a_txt(archivo_salida, moneda, ruta_excel):
 
         # LÍNEA HEADER (01)
         # Formato: 01 + info del archivo + padding hasta 360 caracteres
-        bin_value = str(df.iloc[0]['BIN']) if 'BIN' in df.columns and not pl.is_nan(df.iloc[0]['BIN']) else "489000"
+        bin_value = str(df.iloc[0]['BIN']) if 'BIN' in df.columns and not pd.isna(df.iloc[0]['BIN']) else "489000"
         fecha_proceso = datetime.now().strftime("%Y%m%d")  # Fecha actual YYYYMMDD
 
         header = "01"  # Tipo de registro

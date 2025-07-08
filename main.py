@@ -71,7 +71,7 @@ def main():
 
         # Ejecución de los bots
         for bot_name, bot_function in [
-            ("Bot 01 - Obtener TC bloomberg", Bot_01_SuperAdmin),
+            ("Bot 01 - Descargar Recaudo", Bot_01_SuperAdmin),
             ("Bot 02 - Procesar Reporte", Bot_02_ProcesarReporte),
             ("Bot 03 - Obtener Archivos BBVA", Bot_03_ObtenerArchivosBBVA),
         ]:
