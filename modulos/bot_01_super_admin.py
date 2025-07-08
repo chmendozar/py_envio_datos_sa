@@ -9,8 +9,8 @@ from datetime import datetime
 logger = logging.getLogger("Bot 01 - Super Admin")
 
 def super_admin_login(cfg):
-    username = "nmarcelo"
-    password = "2025"
+    username = cfg["env_vars"]["super_admin_user"]
+    password = cfg["env_vars"]["super_admin_pwd"]
     
     # Leer URLs desde el archivo de configuración
     base_url = cfg["url"]["url_superadmin"]

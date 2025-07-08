@@ -146,18 +146,13 @@ def procesar_df(df: pl.DataFrame) -> pl.DataFrame:
 def bot_run(cfg, mensaje="Bot 02 - Procesar Reporte"):
     resultado = False
     try:
-        logger.info("Iniciando ejecución del bot_run.")
-        # Leer configuración
-        config = configparser.ConfigParser()
-        logger.debug("Leyendo archivo de configuración.")
-        config.read(cfg)
+        logger.info("Iniciando ejecución del bot_run.")      
         input_path = Path(cfg["rutas"]["ruta_input"])
         logger.debug(f"Ruta de input: {input_path}")
         path_reporte = input_path / "recaudo.xls"
         logger.info(f"Leyendo archivo de reporte: {path_reporte}")
         # Leer el archivo Excel y seleccionar/renombrar las columnas relevantes
         df = pl.read_excel(path_reporte)
-
         logger.info("Archivo Excel leído correctamente.")
         # Castear todas las columnas a string (Utf8)
         for col in df.columns:
@@ -186,3 +181,4 @@ def bot_run(cfg, mensaje="Bot 02 - Procesar Reporte"):
     finally:
         logger.info("Fin del bot: %s", mensaje)
         return resultado, mensaje
+        

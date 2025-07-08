@@ -64,9 +64,7 @@ def main():
             return
 
         logger.info(f"Configuración cargada exitosamente. Secciones disponibles: {', '.join(cfg.keys())}")
-        webhook = WebhookNotifier(cfg['webhook']['webhook_rpa_url'])
-        
-       
+        webhook = WebhookNotifier(cfg['env_vars']['webhook_rpa_url'])
 
         # Notificación de inicio
         #notificaion.send_notification("Inicio del proceso tipo de cambio PayPal")
@@ -81,7 +79,6 @@ def main():
             resultado, mensaje = bot_function(cfg)
             webhook.send_notification(f"Bot {bot_name} finalizado con resultado: {resultado} y mensaje: {mensaje}")
         
-
     except Exception as e:
         logger.error(f"Error en main: {e}")
         logger.error(traceback.format_exc())
