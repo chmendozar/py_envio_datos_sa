@@ -1,5 +1,6 @@
 import logging
 import configparser
+import variables_globales as vg
 import polars as pl
 from pathlib import Path
 from datetime import datetime
@@ -167,6 +168,7 @@ def bot_run(cfg, mensaje="Bot 02 - Procesar Reporte"):
         logger.debug(f"Ruta de output: {output_path}")
         fecha_str = datetime.now().strftime("%Y%m%d%H%M%S")
         nombre_archivo = f"Reporte_Recaudacion_{fecha_str}.xlsx"
+        vg.archivo_recaudo = output_path / nombre_archivo
         logger.info(f"Guardando DataFrame procesado en: {output_path / nombre_archivo}")
         df_procesado.write_excel((output_path / nombre_archivo))
         mensaje = f"Reporte procesado y validado correctamente."

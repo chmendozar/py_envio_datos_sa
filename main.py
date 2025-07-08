@@ -90,8 +90,7 @@ def main():
         tiempo_total = fin - inicio
         logger.info(f"==================== FIN DE ORQUESTACIÓN ====================")
         logger.info(f"Fin de orquestación - {fin.strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.info(f"Tiempo total de ejecución: {tiempo_total}")
-        webhook.send_notification(f"Tiempo total de ejecución: {tiempo_total}")
+        logger.info(f"Tiempo total de ejecución: {tiempo_total}")        
         logger.info("Fin del proceso ...")
 
 
