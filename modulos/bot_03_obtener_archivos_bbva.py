@@ -143,7 +143,6 @@ def bot_run(cfg, mensaje="Bot 03 - Obtener Archivos BBVA"):
         logger.info("Iniciando ejecución del bot_run.")      
         input_path = Path(cfg["rutas"]["ruta_input"])
         logger.debug(f"Ruta de input: {vg.archivo_recaudo}")
-        
         logger.info(f"Leyendo archivo de reporte: {vg.archivo_recaudo}")
         generar_txt_dolares(cfg["rutas"]["ruta_output"] + "/dolares.txt", vg.archivo_recaudo)
         generar_txt_soles(cfg["rutas"]["ruta_output"] + "/soles.txt", vg.archivo_recaudo)
