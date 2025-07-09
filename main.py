@@ -5,6 +5,8 @@ from modulos.bot_00_configuracion import bot_run as Bot_00_Configuracion
 from modulos.bot_01_super_admin import bot_run as Bot_01_SuperAdmin
 from modulos.bot_02_procesar_reporte import bot_run as Bot_02_ProcesarReporte
 from modulos.bot_03_obtener_archivos_bbva import bot_run as Bot_03_ObtenerArchivosBBVA
+from modulos.bot_04_cargar_bbva_soles import bot_run as Bot_04_CargarBBVASoles
+from modulos.bot_05_cargar_bbva_dolares import bot_run as Bot_05_CargarBBVADolares
 from utilidades.notificaiones_whook import WebhookNotifier
 
 from datetime import datetime
@@ -74,9 +76,11 @@ def main():
             ("Bot 01 - Descargar Recaudo", Bot_01_SuperAdmin),
             ("Bot 02 - Procesar Reporte", Bot_02_ProcesarReporte),
             ("Bot 03 - Obtener Archivos BBVA", Bot_03_ObtenerArchivosBBVA),
+            ("Bot 04 - Cargar BBVA Soles", Bot_04_CargarBBVASoles), 
+            ("Bot 05 - Cargar BBVA Dólares", Bot_05_CargarBBVADolares)
         ]:
             logger.info(f"==================== INICIANDO {bot_name} ====================")
-            resultado, mensaje = bot_function(cfg)
+            resultado, mensaje = bot_function(cfg, bot_name)
             webhook.send_notification(f"Bot {bot_name} finalizado con resultado: {resultado} y mensaje: {mensaje}")
         
     except Exception as e:

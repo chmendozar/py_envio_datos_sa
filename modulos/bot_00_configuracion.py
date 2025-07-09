@@ -26,7 +26,12 @@ def bot_run():
             cfg["env_vars"] = {
                 "super_admin_user": os.getenv("SUPER_ADMIN_USER"),
                 "super_admin_pwd": os.getenv("SUPER_ADMIN_PWD"),
-                "webhook_rpa_url": os.getenv("WEBHOOK_RPA_URL")
+                "webhook_rpa_url": os.getenv("WEBHOOK_RPA_URL"),
+                "bbva": {
+                    "code": os.getenv("BBVA_CODE"), 
+                    "user": os.getenv("BBVA_USER"),
+                    "password": os.getenv("BBVA_PASSWORD")
+                }
             }
 
         input_path = Path(cfg["rutas"]["ruta_input"])

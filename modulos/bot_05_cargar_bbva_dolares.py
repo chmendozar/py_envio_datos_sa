@@ -14,7 +14,7 @@ import os
 import platform
 from pathlib import Path
 
-logger = logging.getLogger("Bot 04 - Cargar BBVA Soles")
+logger = logging.getLogger("Bot 05 - Cargar BBVA Dólares")
 
 #Función para imprimir la información de un elemento de html
 def print_element_info(elemento):
@@ -95,11 +95,11 @@ def create_stealth_webdriver(cfg):
 
 def cargar_bbva_soles_navegacion(cfg):
     """
-    Función principal que ejecuta todo el proceso de navegación Cargar BBVA SOLES
+    Función principal que ejecuta todo el proceso de navegación Cargar BBVA DÓLARES
     """
     driver = None
     try:
-        logger.info("Iniciando proceso completo de navegación Cargar BBVA SOLES")
+        logger.info("Iniciando proceso completo de navegación Cargar BBVA DÓLARES")
         driver = create_stealth_webdriver(cfg)
 
         def retry_login(max_attempts=int(cfg['reintentos']['reintentos_max'])):
@@ -281,15 +281,15 @@ def upload_file(driver):
     logger.debug("Dentro del iframe #kyop-central-load-area.")
     time.sleep(2)
 
-    # Esperar hasta que el radio button de SOLES esté presente y hacerle click
-    logger.info("Esperando el radio button de SOLES y haciendo click...")
-    radio_soles = WebDriverWait(driver, 60).until(
+    # Esperar hasta que el radio button de DÓLARES esté presente y hacerle click
+    logger.info("Esperando el radio button de DÓLARES y haciendo click...")
+    radio_dolares = WebDriverWait(driver, 60).until(
         EC.presence_of_element_located(
-            (By.XPATH, "//input[@type='radio' and @class='botonradio' and contains(@onclick, 'SOLES')]")
+            (By.XPATH, "//input[@type='radio' and @class='botonradio' and contains(@onclick, 'DOLARES')]")
         )
     )
-    driver.execute_script("arguments[0].click();", radio_soles)
-    logger.info("Click en el radio button de SOLES realizado correctamente.")
+    driver.execute_script("arguments[0].click();", radio_dolares)
+    logger.info("Click en el radio button de DÓLARES realizado correctamente.")
     # Esperar hasta que el botón 'Continuar' esté presente y hacerle clic
     logger.info("Esperando el botón 'Continuar' y haciendo click...")
     boton_continuar = WebDriverWait(driver, 30).until(
@@ -346,6 +346,7 @@ def upload_file(driver):
     alert = driver.switch_to.alert
     logger.info(f"Confirmando: {alert.text}")
     alert.accept()  # Hace clic en "Aceptar"
+    logger.info("Carga de archivo confirmada")
     time.sleep(5) 
 
     # Verificar si aparece el mensaje de error por estructura incorrecta del archivo txt
@@ -370,10 +371,10 @@ def upload_file(driver):
     #
 
 def bot_run(cfg, mensaje):
-    logger.info("Iniciando ejecución de bot_run para Cargar BBVA Soles.")
+    logger.info("Iniciando ejecución de bot_run para Cargar BBVA Dólares.")
     try:
         resultado = False   
-        logger.info("Iniciando ejecución principal del bot Cargar BBVA Soles")
+        logger.info("Iniciando ejecución principal del bot Cargar BBVA Dólares")
         
         max_attempts = 3
         for attempt in range(max_attempts):
@@ -402,12 +403,12 @@ def bot_run(cfg, mensaje):
             mensaje = "Navegación no exitosa"
 
     except Exception as e:
-        logger.error(f"Error en bot Cargar BBVA Soles: {e}")
+        logger.error(f"Error en bot Cargar BBVA Dólares: {e}")
         if platform.system() == 'Windows':
             os.system("taskkill /im chrome.exe /f")
         else:
             os.system("pkill -f chrome")
-        raise Exception(f"Error en bot Cargar BBVA Soles: {e}") from e
+        raise Exception(f"Error en bot Cargar BBVA Dólares: {e}") from e
 
     finally:
         logger.info("Navegador cerrado")
