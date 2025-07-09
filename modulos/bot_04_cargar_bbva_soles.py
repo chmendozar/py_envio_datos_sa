@@ -13,6 +13,7 @@ import logging
 import os
 import platform
 from pathlib import Path
+import variables_globales as vg 
 
 logger = logging.getLogger("Bot 04 - Cargar BBVA Soles")
 
@@ -162,7 +163,7 @@ def login(driver, cfg):
 
         # Limpiar cookies y storage
         driver.delete_all_cookies()
-        driver.get("https://www.bbvanetcash.pe")
+        driver.get(cfg['url']['url_bbva'])
         driver.execute_script("window.localStorage.clear();")
         driver.execute_script("window.sessionStorage.clear();")
         time.sleep(5)  # Espera para carga inicial
@@ -318,7 +319,7 @@ def upload_file(driver):
     )
     # Intentar con send_keys tradicional primero (es lo más robusto)
     time.sleep(4)
-    ruta_archivo = r'C:\Users\u\Downloads\relacion_pago_2025-07-07T201645.239.txt'
+    
     # Buscar el input file y hacerlo visible
     file_input = driver.find_element(By.XPATH, "//input[@type='file']")
         
@@ -326,9 +327,9 @@ def upload_file(driver):
     driver.execute_script("arguments[0].style.display = 'block';", file_input)
         
     # Enviar la ruta del archivo
-    file_input.send_keys(ruta_archivo)
+    file_input.send_keys(vg.archivo_recaudo)
         
-    logger.info(f"Archivo {ruta_archivo} cargado exitosamente")
+    logger.info(f"Archivo {vg.archivo_recaudo} cargado exitosamente")
     time.sleep(2)
 
     # Esperar hasta que el botón 'Continuar' con id 'btnEnviar' esté presente y hacerle clic
