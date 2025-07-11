@@ -91,7 +91,7 @@ class GoogleDriveUploader:
         if folder_id:
             try:
                 # Verificar que la carpeta existe
-                folder = self.service.files().get(fileId=folder_id).execute()
+                folder = self.service.files().get(fileId=folder_id, supportsAllDrives=True).execute()
                 file_metadata['parents'] = [folder_id]
                 logger.info(f"Subiendo a carpeta: {folder.get('name')} ({folder_id})")
                 print(f"Subiendo a carpeta: {folder.get('name')} ({folder_id})")
@@ -118,7 +118,8 @@ class GoogleDriveUploader:
             file = self.service.files().create(
                 body=file_metadata,
                 media_body=media,
-                fields='id,name,size,mimeType,createdTime,webViewLink'
+                fields='id,name,size,mimeType,createdTime,webViewLink',
+                supportsAllDrives=True
             ).execute()
             
             logger.info(f"Archivo subido exitosamente: {file.get('name')} (ID: {file.get('id')})")
